@@ -18,9 +18,18 @@ app.post("/add",(req,res)=>
    res.send({"status":"successs"})
 })
 
-app.get("/search",(req,res)=>
+app.post("/search",(req,res)=>
 {
-    res.send("search")
+   let input=req.body
+   patientmodel.find(input).then(
+    (data)=>{
+        res.json(data)
+    }
+   ).catch(
+    (error)=>{
+        res.json(error)
+    })
+   
 })
 
 app.get("/viewall",(req,res)=>
